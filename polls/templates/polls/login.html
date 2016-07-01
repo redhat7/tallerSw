@@ -1,0 +1,43 @@
+<script>
+	function validarLogin()
+	{
+		//debugger;
+		var username = document.getElementById("username").value;
+		var password = document.getElementById("password").value;
+		var flagInvalido = 0;
+		if(username.length <= 0){
+			document.getElementById("validacion_username").innerText = "*Campo requerido";
+			flagInvalido = 1;
+		}
+		if(password.length <= 0){
+			document.getElementById("validacion_password").innerText = "*Campo requerido";
+			flagInvalido = 1;
+		}
+		if( flagInvalido == 0 ){
+			return true;
+		}
+		else{
+			return false;
+		}
+	};
+</script>
+<h3>LOGIN DE SISTEMA DE BIBLIOTECA</h3>
+<br/>
+<span>{{mensaje}}</span>
+<form method="post" action="{% url 'login'%}?next={{next}}" onsubmit="return validarLogin();">
+{% csrf_token %}
+<table>
+	<tr>
+		<td>Usuario: </td>
+		<td><input type="text" id="username" name="username"/></td>
+		<td><span id="validacion_username"></span></td>
+	</tr>
+	<tr>
+		<td>Password: </td>
+		<td><input type="password" id="password" name="password"/></td>
+		<td><span id="validacion_password"></span></td>
+	</tr>
+</table>
+<input type="submit" value="Iniciar sesion"/>
+</form>
+{{ next }}

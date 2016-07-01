@@ -1,0 +1,39 @@
+<script>
+	function validar(){
+		debugger;
+		codigo = document.getElementById("codigo").value;
+		username = document.getElementById("username").value;
+		password  = document.getElementById("password").value;
+		email = document.getElementById("email").value;
+		if (codigo.length <= 0 || username <= 0 || password <= 0 || email <= 0)
+		{
+			window.alert("Rellene correctamente los campos.");
+			return false;
+		}
+		return true;		
+	};
+</script>
+<h3>Registro</h3>
+<form method="post" action="{% url 'registro'%}" onsubmit="return validar();">
+{% csrf_token %}
+<table>
+	<tr>
+		<td>Codigo estudiante: </td>
+		<td><input type="text" name="codigo" id="codigo"/></td>
+	</tr>
+	<tr>
+		<td>Usuario: </td>
+		<td><input type="text" name="username" id="username"/></td>
+	</tr>
+	<tr>
+		<td>Password: </td>
+		<td><input type="password" name="password" id="password"/></td>
+	</tr>
+	<tr>
+		<td>Email: </td>
+		<td><input type="email" name="email" id="email"/></td>
+	</tr>
+</table>
+<input type="submit" value="Registro!"/>
+</form>
+<span>{{mensaje}}</span>
